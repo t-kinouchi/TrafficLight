@@ -1,29 +1,30 @@
 $(function (){
   // ①ボタンを押すたびに色が変わる動作
-  $('.Green').click(function() {
+  $('#Green').click(function() {
     $('.GreenLight').css('background', 'blue');
     $('.YellowLight').css('background', 'black');
     $('.RedLight').css('background', 'black');
   })
-  $('.Yellow').click(function() {
+  $('#Yellow').click(function() {
     $('.GreenLight').css('background', 'black');
     $('.YellowLight').css('background', 'yellow');
     $('.RedLight').css('background', 'black');
   })
-  $('.Red').click(function() {
+  $('#Red').click(function() {
     $('.GreenLight').css('background', 'black');
     $('.YellowLight').css('background', 'black');
     $('.RedLight').css('background', 'red');
   })
-  $('.Reset').click(function() {
+  $('#Reset').click(function() {
     $('.GreenLight').css('background', 'black');
     $('.YellowLight').css('background', 'black');
     $('.RedLight').css('background', 'black');
   })
-});
+  });
+
 
 $(function (){
-  // ②ボタンを押すと2秒毎に色が変わっていく動作
+  // ②ボタンを押すと2秒毎に色が変わる動作
   const promise = function() {
     return new Promise(function(resolve) {
       setTimeout(function() {
