@@ -24,36 +24,49 @@ $(function (){
 
 $(function (){
   // ②ボタンを押すと2秒毎に色が変わっていく動作
-  $('.start').click(function() {
-    $('.start').prop('disabled', true);
-    $('.Green').prop('disabled', true);
-    $('.Yellow').prop('disabled', true);
-    $('.Red').prop('disabled', true);
-    $('.Reset').prop('disabled', true);
-    setTimeout(function() {
+  $('#start').click(function() {
+    $('#start').prop('disabled', true);
+    $('#Green').prop('disabled', true);
+    $('#Yellow').prop('disabled', true);
+    $('#Red').prop('disabled', true);
+    $('#Reset').prop('disabled', true);
+
+    new Promise(function(resolve) {
+      setTimeout(function() {
       $('.GreenLight').css('background', 'blue');
       $('.YellowLight').css('background', 'black');
       $('.RedLight').css('background', 'black');
-    }, 100);
-    setTimeout(function() {
+      }, 100);
+    })
+
+    Promise.resolve()
+    .then(function(resolve) {
+      setTimeout(function() {
       $('.GreenLight').css('background', 'black');
       $('.YellowLight').css('background', 'yellow');
       $('.RedLight').css('background', 'black');
-    }, 2000);
-    setTimeout(function() {
+      }, 2000);
+    })
+
+    .then(function(rsolve) {
+      setTimeout(function() {
       $('.GreenLight').css('background', 'black');
       $('.YellowLight').css('background', 'black');
       $('.RedLight').css('background', 'red');
-    }, 4000);
-    setTimeout(function() {
+      }, 4000);
+    })
+
+    .then(function(resolve) {
+      setTimeout(function() {
       $('.GreenLight').css('background', 'black');
       $('.YellowLight').css('background', 'black');
       $('.RedLight').css('background', 'black');
-      $('.start').prop('disabled', false);
-      $('.Green').prop('disabled', false);
-      $('.Yellow').prop('disabled', false);
-      $('.Red').prop('disabled', false);
-      $('.Reset').prop('disabled', false);
-    }, 6000);
-  })
+      $('#start').prop('disabled', false);
+      $('#Green').prop('disabled', false);
+      $('#Yellow').prop('disabled', false);
+      $('#Red').prop('disabled', false);
+      $('#Reset').prop('disabled', false);
+      }, 6000);
+    });
+  });
 });
