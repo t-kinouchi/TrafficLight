@@ -24,36 +24,48 @@ $(function (){
 
 $(function (){
   // ②ボタンを押すと2秒毎に色が変わっていく動作
-  $('.start').click(function() {
-    $('.start').prop('disabled', true);
-    $('.Green').prop('disabled', true);
-    $('.Yellow').prop('disabled', true);
-    $('.Red').prop('disabled', true);
-    $('.Reset').prop('disabled', true);
-    setTimeout(function() {
-      $('.GreenLight').css('background', 'blue');
-      $('.YellowLight').css('background', 'black');
-      $('.RedLight').css('background', 'black');
-    }, 100);
-    setTimeout(function() {
+  const promise = function() {
+    return new Promise(function(resolve) {
+      setTimeout(function() {
+        resolve();
+      }, 2000);
+    });
+  };
+
+  $('#start').click(function() {
+    $('#start').prop('disabled', true);
+    $('#Green').prop('disabled', true);
+    $('#Yellow').prop('disabled', true);
+    $('#Red').prop('disabled', true);
+    $('#Reset').prop('disabled', true);
+    $('.GreenLight').css('background', 'blue');
+    $('.YellowLight').css('background', 'black');
+    $('.RedLight').css('background', 'black');
+
+    promise().then(function() {
       $('.GreenLight').css('background', 'black');
       $('.YellowLight').css('background', 'yellow');
       $('.RedLight').css('background', 'black');
-    }, 2000);
-    setTimeout(function() {
+      return promise();
+    })
+
+    .then(function() {
       $('.GreenLight').css('background', 'black');
       $('.YellowLight').css('background', 'black');
       $('.RedLight').css('background', 'red');
-    }, 4000);
-    setTimeout(function() {
+      return promise();
+    })
+
+    .then(function() {
       $('.GreenLight').css('background', 'black');
       $('.YellowLight').css('background', 'black');
       $('.RedLight').css('background', 'black');
-      $('.start').prop('disabled', false);
-      $('.Green').prop('disabled', false);
-      $('.Yellow').prop('disabled', false);
-      $('.Red').prop('disabled', false);
-      $('.Reset').prop('disabled', false);
-    }, 6000);
-  })
+      $('#start').prop('disabled', false);
+      $('#Green').prop('disabled', false);
+      $('#Yellow').prop('disabled', false);
+      $('#Red').prop('disabled', false);
+      $('#Reset').prop('disabled', false);
+      return promise();
+    });
+  });
 });
